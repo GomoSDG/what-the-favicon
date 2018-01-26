@@ -23,18 +23,24 @@ app.factory('gameLoop', ['$interval', 'devicesContainer', function($interval, de
     var ctx = null;
     var screen = null;
 
-    function draw(gameObject){
+    function drawOrigin(origin){
 
         ctx.beginPath();
-        ctx.moveTo(0, screen.height/2);
-        ctx.lineTo(screen.width, screen.height/2);
+        ctx.moveTo(0, origin.y);
+        ctx.lineTo(screen.width, origin.y);
         ctx.stroke();
+
+        ctx.beginPath()
+        ctx.moveTo(origin.x, 0);
+        ctx.lineTo(origin.x, screen.height);
+        ctx.stroke()
     }
 
     function hook(){
         initialiseScreen()
         $.each(gameObjects, function(index, gameObject){
-            draw()
+            var origin = gameObject.movement.origin;
+            drawOrigin(origin);
             gameObject.move();
             gameObject.draw(ctx);
         })
@@ -80,7 +86,7 @@ app.directive('sdgGameScreen', ['devicesContainer', 'gameLoop', function(devices
         devicesContainer.setDevice('screen', screen);
         devicesContainer.setDevice('ctx', screen.getContext("2d"));
 
-        movement = new SineMovement({x: 23, y: screen.height / 2}, 480, screen.width, screen.height / 2);
+        movement = new SineMovement({x: 240, y: screen.height / 2}, 480, screen.width, screen.height / 2);
         renderer = new Ship()
         //movement.peak=50;
 
