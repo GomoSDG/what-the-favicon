@@ -24,12 +24,13 @@ app.factory('gameLoop', ['$interval', 'devicesContainer', function($interval, de
     var screen = null;
 
     function drawOrigin(origin){
-
+        ctx.setLineDash([5, 10]);/*dashes are 5px and spaces are 3px*/
         ctx.beginPath();
         ctx.moveTo(0, origin.y);
         ctx.lineTo(screen.width, origin.y);
         ctx.stroke();
 
+        ctx.setLineDash([5, 10]);/*dashes are 5px and spaces are 3px*/
         ctx.beginPath()
         ctx.moveTo(origin.x, 0);
         ctx.lineTo(origin.x, screen.height);
