@@ -22,7 +22,7 @@ function SineMovement(origin, wavelength, width, a){
         else
             obj.x += 1.5;
 
-        obj.y = (this.origin.y - sine(this.a, this.pf, obj.x + this.origin.x, 0, 0)) - obj.height / 2;
+        obj.y = (this.origin.y - sine(this.a, this.pf, obj.x + this.origin.x, 240, 0)) - obj.height / 2;
     }
 }
 
@@ -35,6 +35,6 @@ function SideToSideMovement(){
 
 function ComposeMovement(l, r){
     this.move = function(obj){
-
+        
     }
 }
