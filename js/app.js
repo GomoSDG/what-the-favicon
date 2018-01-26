@@ -80,7 +80,7 @@ app.directive('sdgGameScreen', ['devicesContainer', 'gameLoop', function(devices
         devicesContainer.setDevice('screen', screen);
         devicesContainer.setDevice('ctx', screen.getContext("2d"));
 
-        movement = new SineMovement({x: 23, y: screen.height / 2}, 50, screen.width, screen.height / 2);
+        movement = new SineMovement({x: 23, y: screen.height / 2}, 480, screen.width, screen.height / 2);
         renderer = new Ship()
         //movement.peak=50;
 
