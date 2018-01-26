@@ -9,22 +9,20 @@ function RightMovement(width){
     }
 }
 
-function SineMovement(width, peak){
-    this.x = 0;
-    this.width = width;
-    this.pf = Math.PI / (width / 2); //Periodicity Factor
-    this.peak = peak;
+function SineMovement(origin, wavelength, width, a){
+    this.wavelength = wavelength;
+    this.width = width
+    this.pf = 1 / (wavelength / 2); //Periodicity Factor
+    this.origin = origin;
+    this.a = a;
 
     this.move = function(obj){
-        if(obj.x > width ){
-            this.x =  -obj.width * this.increase;
+        if(obj.x > width )
             obj.x = -obj.width;
-        }
-        
-        obj.x++;
-        //moveObject.y = (this.peak / 2 - (Math.sin(this.x) * this.peak / 2)) - moveObject.height / 2;
-        obj.y = (this.peak / 2 - (sine(this.peak / 2, this.pf, obj.x, 0, 0))) - obj.height / 2;
-        this.x += this.increase;
+        else
+            obj.x += 1.5;
+
+        obj.y = (this.origin.y - sine(this.a, this.pf, obj.x, 0, 0)) - obj.height / 2;
     }
 }
 
@@ -35,6 +33,8 @@ function SideToSideMovement(){
     }
 }
 
-function LeftOfSineMovement(){
+function ComposeMovement(l, r){
+    this.move = function(obj){
 
+    }
 }

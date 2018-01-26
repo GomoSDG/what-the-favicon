@@ -24,8 +24,6 @@ app.factory('gameLoop', ['$interval', 'devicesContainer', function($interval, de
     var screen = null;
 
     function draw(gameObject){
-        ctx.fillStyle = "#FF0000";
-        ctx.fillRect(gameObject.x, gameObject.y, gameObject.width, gameObject.height);
 
         ctx.beginPath();
         ctx.moveTo(0, screen.height/2);
@@ -36,6 +34,7 @@ app.factory('gameLoop', ['$interval', 'devicesContainer', function($interval, de
     function hook(){
         initialiseScreen()
         $.each(gameObjects, function(index, gameObject){
+            draw()
             gameObject.move();
             gameObject.draw(ctx);
         })
@@ -81,7 +80,7 @@ app.directive('sdgGameScreen', ['devicesContainer', 'gameLoop', function(devices
         devicesContainer.setDevice('screen', screen);
         devicesContainer.setDevice('ctx', screen.getContext("2d"));
 
-        movement = new SineMovement(screen.width, screen.height);
+        movement = new SineMovement({x: 23, y: screen.height / 2}, 50, screen.width, screen.height / 2);
         renderer = new Ship()
         //movement.peak=50;
 
