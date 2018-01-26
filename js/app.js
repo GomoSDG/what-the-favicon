@@ -121,7 +121,6 @@ app.directive('sdgGameScreen', ['devicesContainer', 'gameLoop', '$sdg_player', f
         
         movement = new SineMovement({x: 240, y: 20}, 480, screen.width, 20);
         renderer = new Ship();
-        movement.peak=50;
         $sdg_player.setPlayer(new Sprite(0, 0, 20, 20, movement, renderer));
         console.log($sdg_player.getPlayer().movement.origin);
         gameLoop.addGameObject($sdg_player.getPlayer());
