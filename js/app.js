@@ -37,8 +37,7 @@ app.factory('gameLoop', ['$interval', 'devicesContainer', function($interval, de
         initialiseScreen()
         $.each(gameObjects, function(index, gameObject){
             gameObject.move();
-
-            draw(gameObject)
+            gameObject.draw(ctx);
         })
     }
 
@@ -81,13 +80,12 @@ app.directive('sdgGameScreen', ['devicesContainer', 'gameLoop', function(devices
         screen = container.find('canvas')[0];
         devicesContainer.setDevice('screen', screen);
         devicesContainer.setDevice('ctx', screen.getContext("2d"));
-        console.log(screen.width);
 
         movement = new SineMovement(screen.width, screen.height);
-        movement.peak = screen.height;
+        renderer = new Ship()
         //movement.peak=50;
 
-        gameLoop.addGameObject(new Square(0, 0, 20, movement))
+        gameLoop.addGameObject(new Sprite(0, 0, 20, 20, movement, renderer))
         gameLoop.start();
         
     }
