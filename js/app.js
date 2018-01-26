@@ -81,8 +81,9 @@ app.directive('sdgGameScreen', ['devicesContainer', 'gameLoop', function(devices
         screen = container.find('canvas')[0];
         devicesContainer.setDevice('screen', screen);
         devicesContainer.setDevice('ctx', screen.getContext("2d"));
+        console.log(screen.width);
 
-        movement = new SineMovement();
+        movement = new SineMovement(screen.width, screen.height);
         movement.peak = screen.height;
         //movement.peak=50;
 
